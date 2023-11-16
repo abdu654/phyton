@@ -26,10 +26,10 @@ with open('config.json') as f:
 def generate_oauth_service():
     """Prepare the OAuth2Service that is used to make requests later."""
     return OAuth2Service(
-        client_id=os.environ.get('SxwnrwibmRxNTXXqJqhKTRkQhk2mDLpI'),
-        client_secret=os.environ.get('jqbkuS4RPF_rlPUaAVc8591Lm7B-H80HMy19aq-K'),
-        name=config.get('Sample app'),
-        authorize_url=config.get('https://login.uber.com/oauth/v2/authorize?client_id=SxwnrwibmRxNTXXqJqhKTRkQhk2mDLpI&response_type=code&redirect_uri=http://localhost:7000/submit'),
+        client_id=os.environ.get('UBER_CLIENT_ID'),
+        client_secret=os.environ.get('UBER_CLIENT_SECRET'),
+        name=config.get('name'),
+        authorize_url=config.get('authorize_url'),
         access_token_url=config.get('access_token_url'),
         base_url=config.get('base_url'),
     )
@@ -79,8 +79,8 @@ def submit():
     response = app.requests_session.post(
         config.get('access_token_url'),
         auth=(
-            os.environ.get('SxwnrwibmRxNTXXqJqhKTRkQhk2mDLpI'),
-            os.environ.get('jqbkuS4RPF_rlPUaAVc8591Lm7B-H80HMy19aq-K')
+            os.environ.get('UBER_CLIENT_ID'),
+            os.environ.get('UBER_CLIENT_SECRET')
         ),
         data=params,
     )
