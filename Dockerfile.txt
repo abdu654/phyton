@@ -1,0 +1,20 @@
+# Gunakan gambar Python dari Docker Hub
+FROM python:3.8-slim
+
+# Set kerja direktori ke /app
+WORKDIR /app
+
+# Salin dependencies file ke dalam gambar
+COPY requirements.txt .
+
+# Install dependensi
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Salin isi direktori proyek ke dalam gambar
+COPY . .
+
+# Tentukan port yang akan digunakan aplikasi
+EXPOSE 5000
+
+# Perintah untuk menjalankan aplikasi saat kontainer dimulai
+CMD ["python", "app.py"]
