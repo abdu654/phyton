@@ -1,5 +1,5 @@
 # Gunakan gambar Python dari Docker Hub
-FROM python:3.8-slim
+FROM python:latest
 
 # Set kerja direktori ke /app
 WORKDIR /app
